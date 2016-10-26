@@ -28,11 +28,9 @@ module FaradayMiddleware
         stackdriver: {
           header_name: "X-Cloud-Trace-Context",
           header_value: ->(_) {
-            @trace_id ||= 32.times.map { [*("0".."9"), *("a".."f")].sample }.join
-            @span_id  ||= -1
+            trace_id = 32.times.map { [*("0".."9"), *("a".."f")].sample }.join
 
-            @span_id = @span_id + 1
-            "#{@trace_id}/#{@span_id};o=1"
+            "#{trace_id}/0;o=1"
           }
         },
       }
