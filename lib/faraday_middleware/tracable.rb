@@ -1,7 +1,9 @@
-require "faraday_middleware/tracable/version"
+require "faraday_middleware"
 
 module FaradayMiddleware
-  module Tracable
-    # Your code goes here...
-  end
+  require "faraday_middleware/tracable/request/tracable"
+
+  ::Faraday::Request.register_middleware(
+    tracable: -> { ::FaradayMiddleware::Tracable }
+  )
 end
