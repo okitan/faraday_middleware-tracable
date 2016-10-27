@@ -28,7 +28,7 @@ module FaradayMiddleware
         stackdriver: {
           header_name: "X-Cloud-Trace-Context",
           header_value: ->(_) {
-            trace_id = 32.times.map { [*("0".."9"), *("a".."f")].sample }.join
+            trace_id = SecureRandom.hex(32)
 
             "#{trace_id}/0;o=1"
           }
